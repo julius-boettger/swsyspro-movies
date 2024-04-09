@@ -1,3 +1,5 @@
 package swsyspro.movies;
 
-public record Movie(long id, String name) {}
+import lombok.NonNull;
+
+public record Movie(long id, @NonNull String name) {}
