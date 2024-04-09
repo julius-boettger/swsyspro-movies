@@ -1,0 +1,6 @@
+{
+  "version": "1",
+  "name": "swsyspro-movies",
+  "type": "collection",
+  "ignore": [ ".git" ]
+}
