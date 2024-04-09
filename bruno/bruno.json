@@ -3,4 +3,8 @@
   "name": "swsyspro-movies",
   "type": "collection",
   "ignore": [ ".git" ]
+  "presets": {
+    "requestType": "http",
+    "requestUrl": "http://localhost:8080/"
+  }
 }
