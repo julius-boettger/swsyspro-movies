@@ -34,8 +34,7 @@ public class MovieController
         return movie;
     }
 
-    // TODO refactor to /movies/id/{id}
-    @GetMapping("/movies/{id}")
+    @GetMapping("/movies/id/{id}")
     public Movie getMovie (@PathVariable long id)
     {
         // TODO return error message with code 404 if id doesn't exist
