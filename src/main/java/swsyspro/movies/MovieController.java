@@ -2,10 +2,7 @@ package swsyspro.movies;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
@@ -22,10 +19,11 @@ public class MovieController
     private final AtomicLong next_id = new AtomicLong();
 
 
-    // TODO accept json movie (without id?) as post request body instead of path variable
-    @PostMapping("/movies/{name}")
-    public Movie postMovie (HttpServletResponse response, @PathVariable String name)
+    /** @param request JSON object with field {@code name} of type string */
+    @PostMapping("/movies")
+    public Movie postMovie (@RequestBody Map<String, String> request, HttpServletResponse response)
     {
+        String name = request.get("name");
         long id = next_id.getAndIncrement();
         Movie movie = new Movie(id, name);
         this.movies.put(id, movie);

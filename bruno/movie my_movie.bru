@@ -5,7 +5,13 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/movies/my_movie
-  body: none
+  url: http://localhost:8080/movies
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "name": "my_movie"
+  }
 }
