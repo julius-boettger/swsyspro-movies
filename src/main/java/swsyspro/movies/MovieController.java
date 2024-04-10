@@ -7,7 +7,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 // TODO set up docker compose
 
@@ -19,6 +18,13 @@ public class MovieController
     /** id the next posted movie will receive */
     private final AtomicLong next_id = new AtomicLong();
 
+
+    @GetMapping("/movies")
+    public Collection<Movie> getMovies ()
+    {
+        System.out.println("requested all movies");
+        return this.movies.values();
+    }
 
     /** @param request JSON object with field {@code name} of type string */
     @PostMapping("/movies")
@@ -70,12 +76,5 @@ public class MovieController
             .toList();
         System.out.printf("requested movie \"%s\", returning %s\n", name, movies);
         return movies;
-    }
-
-    @GetMapping("/movies")
-    public Collection<Movie> getMovies ()
-    {
-        System.out.println("requested all movies");
-        return this.movies.values();
     }
 }
