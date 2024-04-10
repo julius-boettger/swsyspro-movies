@@ -2,9 +2,8 @@
 FROM maven:3-amazoncorretto-21 AS builder
 WORKDIR /app
 
-COPY ["pom.xml", "mvnw", "src", "./"]
-# maven wrapper from spring initializer
-RUN ["./mvnw", "install"]
+COPY ["pom.xml", "src", "./"]
+RUN ["mvn", "clean", "package"]
 
 # run with jdk 21
 FROM amazoncorretto:21
