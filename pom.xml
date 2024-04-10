@@ -16,7 +16,7 @@
 	<artifactId>swsyspro-movies</artifactId>
 	<version>1.0.0</version>
 	<name>swsyspro-movies</name>
-	<description>Demo project for Spring Boot</description>
+	<description>REST API for movies</description>
 	<properties>
 		<java.version>21</java.version>
 		<start-class>swsyspro.movies.MoviesApplication</start-class>
