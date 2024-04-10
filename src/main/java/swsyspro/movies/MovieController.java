@@ -68,7 +68,7 @@ public class MovieController
         List<Movie> movies = this.movies.values().stream()
             .filter(movie -> movie.name().equals(name))
             .toList();
-        System.out.printf("requested movie \"%s\", returning %s", name, movies);
+        System.out.printf("requested movie \"%s\", returning %s\n", name, movies);
         return movies;
     }
 
