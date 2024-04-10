@@ -1,10 +1,12 @@
 package swsyspro.movies;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -37,8 +39,12 @@ public class MovieController
     @GetMapping("/movies/id/{id}")
     public Movie getMovie (@PathVariable long id)
     {
-        // TODO return error message with code 404 if id doesn't exist
         Movie movie = movies.get(id);
+        if (movie == null)
+        {
+            System.out.printf("requested id %d (which does not exist), returning 404\n", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no known movie has id " + id);
+        }
         System.out.printf("requested id %d, returning %s\n", id, movie);
         return movie;
     }
