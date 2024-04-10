@@ -1,5 +1,6 @@
 package swsyspro.movies;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,14 +22,16 @@ public class MovieController
 
     // TODO accept json movie (without id?) as post request body instead of path variable
     @PostMapping("/movies/{name}")
-    public Movie postMovie (@PathVariable String name)
+    public Movie postMovie (HttpServletResponse response, @PathVariable String name)
     {
         long id = next_id.getAndIncrement();
         Movie movie = new Movie(id, name);
         this.movies.put(id, movie);
+
         System.out.printf("got movie name \"%s\", returning movie %s\n", name, movie);
+
+        response.setStatus(201);
         return movie;
-        // TODO return code 201
     }
 
     // TODO refactor to /movies/id/{id}
