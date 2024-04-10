@@ -33,4 +33,11 @@ public class MovieController
         System.out.printf("requested id %d, returning %s\n", id, movie);
         return movie;
     }
+
+    @GetMapping("/movies")
+    public Collection<Movie> getMovies ()
+    {
+        System.out.println("requested all movies");
+        return this.movies.values();
+    }
 }
