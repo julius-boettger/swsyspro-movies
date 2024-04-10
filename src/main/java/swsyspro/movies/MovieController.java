@@ -66,7 +66,7 @@ public class MovieController
     public List<Movie> getMoviesByName (@PathVariable String name)
     {
         List<Movie> movies = this.movies.values().stream()
-            .filter(movie -> movie.name().equals(name))
+            .filter(movie -> movie.name().equalsIgnoreCase(name))
             .toList();
         System.out.printf("requested movie \"%s\", returning %s\n", name, movies);
         return movies;
