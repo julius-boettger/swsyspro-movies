@@ -48,6 +48,20 @@ public class MovieController
         return movie;
     }
 
+    @DeleteMapping("/movies/id/{id}")
+    public void deleteMovieById (@PathVariable long id, HttpServletResponse response)
+    {
+        if (!this.movies.containsKey(id))
+        {
+            System.out.printf("requested deletion of id %d (which does not exist), returning 404\n", id);
+            response.setStatus(404);
+            return;
+        }
+        this.movies.remove(id);
+        System.out.printf("deleted id %d, returning 200\n", id);
+        response.setStatus(204);
+    }
+
     @GetMapping("/movies/name/{name}")
     public List<Movie> getMoviesByName (@PathVariable String name)
     {
@@ -64,6 +78,4 @@ public class MovieController
         System.out.println("requested all movies");
         return this.movies.values();
     }
-
-    // TODO DELETE /movies/id/{id} endpoint
 }
