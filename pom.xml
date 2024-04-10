@@ -19,6 +19,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>
+		<start-class>swsyspro.movies.MoviesApplication</start-class>
 	</properties>
 
 	<build>
