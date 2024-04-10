@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 // TODO set up docker compose
 
@@ -35,7 +36,7 @@ public class MovieController
     }
 
     @GetMapping("/movies/id/{id}")
-    public Movie getMovie (@PathVariable long id)
+    public Movie getMovieById (@PathVariable long id)
     {
         Movie movie = movies.get(id);
         if (movie == null)
@@ -47,6 +48,16 @@ public class MovieController
         return movie;
     }
 
+    @GetMapping("/movies/name/{name}")
+    public List<Movie> getMoviesByName (@PathVariable String name)
+    {
+        List<Movie> movies = this.movies.values().stream()
+            .filter(movie -> movie.name().equals(name))
+            .toList();
+        System.out.printf("requested movie \"%s\", returning %s", name, movies);
+        return movies;
+    }
+
     @GetMapping("/movies")
     public Collection<Movie> getMovies ()
     {
@@ -54,6 +65,5 @@ public class MovieController
         return this.movies.values();
     }
 
-    // TODO GET /movies/name/{name} endpoint
     // TODO DELETE /movies/id/{id} endpoint
 }
