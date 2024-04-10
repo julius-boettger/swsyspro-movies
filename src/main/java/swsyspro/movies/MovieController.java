@@ -21,13 +21,13 @@ public class MovieController
 
     // TODO accept json movie (without id?) as post request body instead of path variable
     @PostMapping("/movies/{name}")
-    public long postMovie (@PathVariable String name)
+    public Movie postMovie (@PathVariable String name)
     {
         long id = next_id.getAndIncrement();
-        this.movies.put(id, new Movie(id, name));
-        System.out.printf("got movie \"%s\", returning id %d\n", name, id);
-        return id;
-        // TODO return whole movie, not just id
+        Movie movie = new Movie(id, name);
+        this.movies.put(id, movie);
+        System.out.printf("got movie name \"%s\", returning movie %s\n", name, movie);
+        return movie;
         // TODO return code 201
     }
 
