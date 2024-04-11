@@ -9,7 +9,7 @@ RUN ["mvn", "clean", "package"]
 FROM eclipse-temurin:21
 WORKDIR /app
 
-COPY --from=builder ["target/*.jar", "app.jar"]
+COPY --from=builder ["/app/target/*.jar", "app.jar"]
 
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
