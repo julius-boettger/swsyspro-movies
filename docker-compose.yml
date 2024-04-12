@@ -1,5 +1,5 @@
 services:
-  movies:
+  rest-api:
     build: .
     ports:
       - "8080:8080"
