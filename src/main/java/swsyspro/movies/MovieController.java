@@ -8,8 +8,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-// TODO set up docker compose
-
 @RestController
 public class MovieController
 {
