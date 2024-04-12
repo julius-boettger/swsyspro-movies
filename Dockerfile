@@ -2,10 +2,9 @@
 FROM eclipse-temurin:21 as build
 WORKDIR /workspace/app
 
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-COPY src src
+COPY ["mvnw", "pom.xml", "./"]
+COPY [".mvn", ".mvn"]
+COPY ["src", "src"]
 
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
