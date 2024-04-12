@@ -1,12 +1,11 @@
-FROM eclipse-temurin:21 as build
+FROM maven:3-eclipse-temurin-21 as build
 WORKDIR /app
 
 COPY ["src", "src"]
-COPY ["mvnw", "pom.xml", "./"]
-COPY [".mvn/wrapper/maven-wrapper.properties", ".mvn/wrapper/maven-wrapper.properties"]
+COPY ["pom.xml", "./"]
 
 # build jar
-RUN ["./mvnw", "package", "-DskipTests"]
+RUN ["mvn", "package", "-DskipTests"]
 # extract jar to target/dependency
 RUN ["mkdir", "-p", "target/dependency"]
 RUN ["sh", "-c", "cd target/dependency && jar -xf ../*.jar"]
