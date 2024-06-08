@@ -1,6 +1,8 @@
 # Movies: Simple REST API for managing movies
 > uni assignment in software engineering
 
+The `bruno` directory contains a [Bruno](https://www.usebruno.com/) collection for testing.
+
 ### Installation
 
 ```sh
